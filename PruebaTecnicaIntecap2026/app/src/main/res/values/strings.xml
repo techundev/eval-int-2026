@@ -3,4 +3,6 @@
     <string name="login_screen_textfield_email">Usuario o correo electrónico</string>
     <string name="login_screen_textfield_password">Contraseña</string>
     <string name="login_screen_button_login">Iniciar sesion</string>
+    <string name="employee_screen_button_logout">Cerrar sesión</string>
+    <string name="employee_screen_feature_in_progress">"Modulo en mantenimiento"</string>
 </resources>
