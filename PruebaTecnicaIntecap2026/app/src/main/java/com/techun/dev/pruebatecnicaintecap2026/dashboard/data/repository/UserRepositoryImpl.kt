@@ -21,19 +21,22 @@ class UserRepositoryImpl @Inject constructor(private val api: UsersApiService) :
         if (response.isSuccessful) {
             val body = response.body() ?: emptyMap()
 
-            val userList = body.map { (key, dto) ->
-
-                User(
-                    id = dto.id,
-                    name = dto.name,
-                    lastName = dto.lastName,
-                    role = UserRole.fromInt(dto.role),
-                    email = dto.email,
-                    phoneNumber = dto.phoneNumber,
-                    username = dto.username,
-                    password = dto.password,
-                    status = dto.status
-                )
+            val userList = body.values.mapNotNull { dto ->
+                if (dto.status == 1) {
+                    User(
+                        id = dto.id,
+                        name = dto.name,
+                        lastName = dto.lastName,
+                        role = UserRole.fromInt(dto.role),
+                        email = dto.email,
+                        phoneNumber = dto.phoneNumber,
+                        username = dto.username,
+                        password = dto.password,
+                        status = dto.status
+                    )
+                } else {
+                    null
+                }
             }
             emit(userList)
         } else {
@@ -45,7 +48,6 @@ class UserRepositoryImpl @Inject constructor(private val api: UsersApiService) :
         id: String, user: UserResponse
     ) {
         withContext(Dispatchers.IO) {
-            // Ejecutamos ambas peticiones
             val resUser = api.saveUserAuth(id, user)
 
             if (!resUser.isSuccessful) {
@@ -60,15 +62,4 @@ class UserRepositoryImpl @Inject constructor(private val api: UsersApiService) :
             }
         }
     }
-
-    override suspend fun deleteUser(idUsuario: String) {
-        withContext(Dispatchers.IO) {
-            val delAuth = api.deleteUserAuth(idUsuario)
-
-            if (!delAuth.isSuccessful) {
-                throw Exception("No se pudo eliminar el usuario completamente")
-            }
-        }
-    }
-
 }

@@ -18,7 +18,7 @@ data class UserResponse(
 )
 
 fun User.toNetwork() = UserResponse(
-    id = email,
+    id = id,
     name = name,
     lastName = lastName,
     username = username,

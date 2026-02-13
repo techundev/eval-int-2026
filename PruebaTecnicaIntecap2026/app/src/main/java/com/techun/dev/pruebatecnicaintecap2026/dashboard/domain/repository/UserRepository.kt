@@ -12,5 +12,4 @@ interface UserRepository {
         user: UserResponse
     )
 
-    suspend fun deleteUser(idUsuario: String)
 }

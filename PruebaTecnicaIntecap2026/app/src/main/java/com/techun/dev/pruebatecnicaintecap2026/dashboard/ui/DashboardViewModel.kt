@@ -54,13 +54,18 @@ class DashboardViewModel @Inject constructor(
 
 
     fun onItemEdited(userInfo: User) = viewModelScope.launch {
-//        updateUser(userInfo).onSuccess {
-//            refresh() // <--- RECARGA LA LISTA AQUÍ
-//        }
+
+        updateUser(userInfo.id, userInfo.copy()).onSuccess {
+            refresh()
+        }
     }
 
-    fun onItemRemove(userInfo: User) {
-
+    fun onItemRemove(userInfo: User) = viewModelScope.launch {
+        updateUser(userInfo.id, userInfo.copy(status = 0)).onSuccess {
+            refresh()
+        }.onFailure {
+            Log.e("ERROR", "onItemRemove: $it" )
+        }
     }
 
     fun onDialogClose() {
