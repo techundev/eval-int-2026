@@ -73,8 +73,8 @@ class LoginViewModel @Inject constructor(private val doLogin: DoLogin) : ViewMod
 
 data class LoginUiState(
     val isSuccess: Boolean = false,
-    val user: String = "jdoe",
-    val password: String = "password1",
+    val user: String = "admin_master",
+    val password: String = "123",
     val isLoading: Boolean = false,
     val error: String? = null,
     val role: UserRole = UserRole.UNKNOWN

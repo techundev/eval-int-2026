@@ -1,4 +1,4 @@
-package com.techun.dev.pruebatecnicaintecap2026.employee.components
+package com.techun.dev.pruebatecnicaintecap2026.dashboard.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -33,13 +33,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.techun.dev.pruebatecnicaintecap2026.R
-import com.techun.dev.pruebatecnicaintecap2026.employee.domain.model.UserModel
+import com.techun.dev.pruebatecnicaintecap2026.dashboard.domain.model.UserModel
 import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapText
 
 
 @Composable
-fun PruebTecIntecapItemTask(
-    user: UserModel, onEditSelected: () -> Unit, onDeleteSelected: () -> Unit
+fun PruebTecIntecapItem(
+    user: UserModel, onEditSelected: (UserModel) -> Unit, onDeleteSelected: (UserModel) -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -55,25 +55,25 @@ fun PruebTecIntecapItemTask(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(100.dp)
+                    .height(80.dp)
                     .background(MaterialTheme.colorScheme.primary)
                     .constrainAs(header) {
                         top.linkTo(parent.top)
                     }
                     .padding(16.dp)) {
                 PruebTecIntecapText(
-                    text = user.role, color = Color.White, fontWeight = FontWeight.Bold
+                    text = user.role.name, color = Color.White, fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Icon(
-                    modifier = Modifier.clickable { onEditSelected() },
+                    modifier = Modifier.clickable { onEditSelected(user) },
                     imageVector = Icons.Filled.Edit,
                     contentDescription = null,
                     tint = Color.White
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Icon(
-                    modifier = Modifier.clickable { onDeleteSelected() },
+                    modifier = Modifier.clickable { onDeleteSelected(user) },
                     imageVector = Icons.Filled.Delete,
                     contentDescription = null,
                     tint = Color.White
