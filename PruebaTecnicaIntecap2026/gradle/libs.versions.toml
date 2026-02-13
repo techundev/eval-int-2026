@@ -14,6 +14,7 @@ ksp = "2.3.4"
 retrofit = "3.0.0"
 nav3Core = "1.0.0"
 kotlinSerialization = "1.10.0"
+constraintlayout = "1.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -40,6 +41,7 @@ retrofit-adapter = { module = "com.squareup.retrofit2:converter-kotlinx-serializ
 androidx-navigation3-runtime ={module = "androidx.navigation3:navigation3-runtime",version.ref="nav3Core"}
 androidx-navigation3-ui ={module = "androidx.navigation3:navigation3-ui",version.ref="nav3Core"}
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerialization" }
+constraint-layout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayout" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
