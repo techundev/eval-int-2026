@@ -13,19 +13,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.techun.dev.pruebatecnicaintecap2026.dashboard.components.PruebTecIntecapDialog
+import com.techun.dev.pruebatecnicaintecap2026.dashboard.components.PruebTecIntecapFab
 import com.techun.dev.pruebatecnicaintecap2026.dashboard.components.PruebTecIntecapList
 
 @Composable
 fun DashboardScreen(dashboardViewModel: DashboardViewModel = hiltViewModel()) {
-    val tasks by dashboardViewModel.uiState.collectAsStateWithLifecycle()
+    val dashState by dashboardViewModel.uiState.collectAsStateWithLifecycle()
+    val showDialog by dashboardViewModel.showDialog.collectAsStateWithLifecycle()
 
     Scaffold(floatingActionButton = {
-//        ToDoFabDialog(
-//            onAddTask = {
-//                taskViewModel.onShowDialog()
-//            })
+        PruebTecIntecapFab(
+            onCreateUser = {
+                dashboardViewModel.onShowDialog()
+            })
     }) { paddingValues ->
-        when (tasks) {
+        when (dashState) {
             is DashboardUiState.Error -> {}
             DashboardUiState.Loading -> {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -40,8 +43,13 @@ fun DashboardScreen(dashboardViewModel: DashboardViewModel = hiltViewModel()) {
                         .fillMaxSize()
                         .background(color = MaterialTheme.colorScheme.background)
                 ) {
+                    PruebTecIntecapDialog(
+                        show = showDialog,
+                        onUserAdded = { auth -> dashboardViewModel.onCreateUser(auth) },
+                        onDismiss = { dashboardViewModel.onDialogClose() })
+
                     PruebTecIntecapList(
-                        (tasks as DashboardUiState.Success).users,
+                        (dashState as DashboardUiState.Success).users,
                         onEditSelected = { userInfo -> dashboardViewModel.onItemEdited(userInfo) },
                         onDeleteSelected = { userInfo -> dashboardViewModel.onItemRemove(userInfo) })
                 }

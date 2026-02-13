@@ -23,7 +23,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.techun.dev.pruebatecnicaintecap2026.R
 import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapButton
 import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapTextField
-import com.techun.dev.pruebatecnicaintecap2026.login.domain.model.UserRole
+import com.techun.dev.pruebatecnicaintecap2026.core.domain.UserRole
 
 @Composable
 fun LoginScreen(

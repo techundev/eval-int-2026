@@ -3,7 +3,6 @@ package com.techun.dev.pruebatecnicaintecap2026.dashboard.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,7 +19,6 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,13 +31,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.techun.dev.pruebatecnicaintecap2026.R
-import com.techun.dev.pruebatecnicaintecap2026.dashboard.domain.model.UserModel
+import com.techun.dev.pruebatecnicaintecap2026.core.domain.User
 import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapText
 
 
 @Composable
 fun PruebTecIntecapItem(
-    user: UserModel, onEditSelected: (UserModel) -> Unit, onDeleteSelected: (UserModel) -> Unit
+    user: User, onEditSelected: (User) -> Unit, onDeleteSelected: (User) -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -65,18 +63,11 @@ fun PruebTecIntecapItem(
                     text = user.role.name, color = Color.White, fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.weight(1f))
-                Icon(
-                    modifier = Modifier.clickable { onEditSelected(user) },
-                    imageVector = Icons.Filled.Edit,
-                    contentDescription = null,
-                    tint = Color.White
-                )
+                PruebTecIntecapIconAction(
+                    icon = Icons.Filled.Edit, onIconSelected = { onEditSelected(user) })
                 Spacer(modifier = Modifier.width(10.dp))
-                Icon(
-                    modifier = Modifier.clickable { onDeleteSelected(user) },
-                    imageVector = Icons.Filled.Delete,
-                    contentDescription = null,
-                    tint = Color.White
+                PruebTecIntecapIconAction(
+                    onIconSelected = { onDeleteSelected(user) }, icon = Icons.Filled.Delete
                 )
             }
 
@@ -103,7 +94,7 @@ fun PruebTecIntecapItem(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 50.dp, bottom = 16.dp)
+                    .padding(top = 40.dp, bottom = 16.dp)
                     .constrainAs(userInfo) {
                         top.linkTo(header.bottom)
                         start.linkTo(parent.start)

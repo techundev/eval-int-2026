@@ -22,14 +22,14 @@ import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.techun.dev.pruebatecnicaintecap2026.dashboard.domain.model.UserModel
+import com.techun.dev.pruebatecnicaintecap2026.core.domain.User
 import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapText
 
 @Composable
 fun PruebTecIntecapList(
-    tasks: List<UserModel>,
-    onEditSelected: (UserModel) -> Unit,
-    onDeleteSelected: (UserModel) -> Unit
+    users: List<User>,
+    onEditSelected: (User) -> Unit,
+    onDeleteSelected: (User) -> Unit
 ) {
     val listState = rememberLazyListState()
 
@@ -67,11 +67,11 @@ fun PruebTecIntecapList(
             PruebTecIntecapCardHeaderSection()
         }
 
-        items(tasks, key = { it.idUser }) { currentTask ->
-            PruebTecIntecapItem(currentTask, onEditSelected = { task ->
-                onEditSelected(task)
-            }, onDeleteSelected = { task ->
-                onDeleteSelected(task)
+        items(users, key = { it.id }) { currentUser ->
+            PruebTecIntecapItem(currentUser, onEditSelected = { user ->
+                onEditSelected(user)
+            }, onDeleteSelected = { user ->
+                onDeleteSelected(user)
             })
         }
 

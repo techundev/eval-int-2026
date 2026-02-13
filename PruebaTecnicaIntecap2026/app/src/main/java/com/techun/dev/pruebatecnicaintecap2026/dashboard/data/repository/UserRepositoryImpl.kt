@@ -1,33 +1,38 @@
 package com.techun.dev.pruebatecnicaintecap2026.dashboard.data.repository
 
+import android.util.Log
+import com.techun.dev.pruebatecnicaintecap2026.core.data.UserResponse
+import com.techun.dev.pruebatecnicaintecap2026.core.domain.User
+import com.techun.dev.pruebatecnicaintecap2026.core.domain.UserRole
 import com.techun.dev.pruebatecnicaintecap2026.dashboard.data.source.api.UsersApiService
-import com.techun.dev.pruebatecnicaintecap2026.dashboard.domain.model.UserModel
 import com.techun.dev.pruebatecnicaintecap2026.dashboard.domain.repository.UserRepository
-import com.techun.dev.pruebatecnicaintecap2026.login.domain.model.UserRole
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class UserRepositoryImpl @Inject constructor(private val usersApiService: UsersApiService) :
-    UserRepository {
+class UserRepositoryImpl @Inject constructor(private val api: UsersApiService) : UserRepository {
 
-    override val users: Flow<List<UserModel>> = flow {
-        val response = usersApiService.getAllUsers()
+    override val users: Flow<List<User>> = flow {
+        val response = api.getAllUsers()
 
         if (response.isSuccessful) {
             val body = response.body() ?: emptyMap()
 
             val userList = body.map { (key, dto) ->
 
-                UserModel(
-                    idUser = key,
+                User(
+                    id = dto.id,
                     name = dto.name,
                     lastName = dto.lastName,
                     role = UserRole.fromInt(dto.role),
                     email = dto.email,
-                    phoneNumber = dto.phoneNumber
+                    phoneNumber = dto.phoneNumber,
+                    username = dto.username,
+                    password = dto.password,
+                    status = dto.status
                 )
             }
             emit(userList)
@@ -35,5 +40,35 @@ class UserRepositoryImpl @Inject constructor(private val usersApiService: UsersA
             emit(emptyList())
         }
     }.flowOn(Dispatchers.IO)
+
+    override suspend fun saveAndUpdateUser(
+        id: String, user: UserResponse
+    ) {
+        withContext(Dispatchers.IO) {
+            // Ejecutamos ambas peticiones
+            val resUser = api.saveUserAuth(id, user)
+
+            if (!resUser.isSuccessful) {
+                Log.e(
+                    "FIREBASE_ERROR",
+                    "Auth falló: ${resUser.errorBody()?.string()} Código: ${resUser.code()}"
+                )
+            }
+
+            if (!resUser.isSuccessful) {
+                throw Exception("Error Firebase: Auth=${resUser.code()}")
+            }
+        }
+    }
+
+    override suspend fun deleteUser(idUsuario: String) {
+        withContext(Dispatchers.IO) {
+            val delAuth = api.deleteUserAuth(idUsuario)
+
+            if (!delAuth.isSuccessful) {
+                throw Exception("No se pudo eliminar el usuario completamente")
+            }
+        }
+    }
 
 }

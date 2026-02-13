@@ -13,7 +13,7 @@ import com.techun.dev.pruebatecnicaintecap2026.core.navigation.Routes.ErrorScree
 import com.techun.dev.pruebatecnicaintecap2026.core.navigation.Routes.Login
 import com.techun.dev.pruebatecnicaintecap2026.dashboard.ui.DashboardScreen
 import com.techun.dev.pruebatecnicaintecap2026.employee.EmployeeScreen
-import com.techun.dev.pruebatecnicaintecap2026.login.domain.model.UserRole
+import com.techun.dev.pruebatecnicaintecap2026.core.domain.UserRole
 import com.techun.dev.pruebatecnicaintecap2026.login.ui.LoginScreen
 
 @Composable
