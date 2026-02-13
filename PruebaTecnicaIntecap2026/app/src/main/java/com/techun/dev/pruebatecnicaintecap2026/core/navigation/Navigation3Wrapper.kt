@@ -7,11 +7,12 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import com.techun.dev.pruebatecnicaintecap2026.core.ex.back
 import com.techun.dev.pruebatecnicaintecap2026.core.ex.navigateAndClear
-import com.techun.dev.pruebatecnicaintecap2026.core.ex.navigateTo
 import com.techun.dev.pruebatecnicaintecap2026.core.navigation.Routes.Dashboard
-import com.techun.dev.pruebatecnicaintecap2026.core.navigation.Routes.Login
+import com.techun.dev.pruebatecnicaintecap2026.core.navigation.Routes.Employee
 import com.techun.dev.pruebatecnicaintecap2026.core.navigation.Routes.ErrorScreen
+import com.techun.dev.pruebatecnicaintecap2026.core.navigation.Routes.Login
 import com.techun.dev.pruebatecnicaintecap2026.dashboard.ui.DashboardScreen
+import com.techun.dev.pruebatecnicaintecap2026.employee.EmployeeScreen
 import com.techun.dev.pruebatecnicaintecap2026.login.domain.model.UserRole
 import com.techun.dev.pruebatecnicaintecap2026.login.ui.LoginScreen
 
@@ -22,13 +23,15 @@ fun Navigation3Wrapper() {
     NavDisplay(backStack = backStack, onBack = { backStack.back() }, entryProvider = entryProvider {
         entry<Login> {
             LoginScreen(navigateToDashboard = { userRole ->
-                when(userRole){
+                when (userRole) {
                     UserRole.ADMIN -> {
                         backStack.navigateAndClear(Dashboard)
                     }
+
                     UserRole.EMPLOYEE -> {
-                        backStack.navigateAndClear(Dashboard)
+                        backStack.navigateAndClear(Employee)
                     }
+
                     UserRole.UNKNOWN -> {
                         backStack.navigateAndClear(Dashboard)
                     }
@@ -38,6 +41,10 @@ fun Navigation3Wrapper() {
         }
         entry<Dashboard> {
             DashboardScreen()
+        }
+
+        entry<Employee> {
+            EmployeeScreen(navigateBack = { backStack.navigateAndClear(Login)})
         }
 
         entry<ErrorScreen> {

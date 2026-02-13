@@ -12,6 +12,9 @@ sealed class Routes : NavKey {
     object Dashboard : Routes()
 
     @Serializable
+    object Employee : Routes()
+
+    @Serializable
     object ErrorScreen : Routes()
 
 }

@@ -41,7 +41,8 @@ fun LoginScreen(
 
     LaunchedEffect(uiState.isSuccess) {
         if (uiState.isSuccess) {
-            navigateToDashboard()
+            val role = uiState.role
+            navigateToDashboard(role)
             loginViewModel.resetNavigation()
         }
     }
