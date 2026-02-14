@@ -33,6 +33,7 @@ fun PruebTecIntecapList(
 ) {
     val listState = rememberLazyListState()
     var isDialogDisplay by remember { mutableStateOf(false) }
+    var isConfirmDialogDisplay by remember { mutableStateOf(false) }
     var selectedUser by remember { mutableStateOf<User?>(null) }
 
     val showTopFade by remember {
@@ -65,12 +66,24 @@ fun PruebTecIntecapList(
         textConfirmButtom = "Save",
         userToEdit = selectedUser,
         show = isDialogDisplay,
-        onUserAdded = { auth ->
-            onEditSelected(auth)
+        onUserAdded = { user ->
+            onEditSelected(user)
             isDialogDisplay = !isDialogDisplay
         },
         onDismiss = {
             isDialogDisplay = !isDialogDisplay
+            selectedUser = null
+        })
+
+    PruebTecIntecapConfirmDialog(
+        show = isConfirmDialogDisplay,
+        userToEdit = selectedUser,
+        onConfirm = {user ->
+            onDeleteSelected(user)
+            isConfirmDialogDisplay = !isConfirmDialogDisplay
+        },
+        onDismiss = {
+            isConfirmDialogDisplay = !isConfirmDialogDisplay
             selectedUser = null
         })
 
@@ -88,7 +101,8 @@ fun PruebTecIntecapList(
                 selectedUser = user
                 isDialogDisplay = true
             }, onDeleteSelected = { user ->
-                onDeleteSelected(user)
+                selectedUser = user
+                isConfirmDialogDisplay = true
             })
         }
 

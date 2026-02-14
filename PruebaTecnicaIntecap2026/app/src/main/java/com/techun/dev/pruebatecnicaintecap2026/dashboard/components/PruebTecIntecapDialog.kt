@@ -1,11 +1,14 @@
 package com.techun.dev.pruebatecnicaintecap2026.dashboard.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -15,11 +18,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.techun.dev.pruebatecnicaintecap2026.core.components.PruebTecIntecapButtonSeconday
 import com.techun.dev.pruebatecnicaintecap2026.core.domain.User
 import com.techun.dev.pruebatecnicaintecap2026.core.domain.UserRole
 import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapButton
@@ -42,7 +47,7 @@ fun PruebTecIntecapDialog(
     var email by remember { mutableStateOf("") }
     var phoneNumber by remember { mutableStateOf("") }
     var userRole by remember { mutableStateOf(UserRole.ADMIN) }
-    var selectedName by remember { mutableStateOf("Admin") } // Para los RadioButtons
+    var selectedName by remember { mutableStateOf("Admin") }
 
 
     LaunchedEffect(userToEdit, show) {
@@ -72,6 +77,7 @@ fun PruebTecIntecapDialog(
                     text = title,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onPrimary,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
                 Spacer(Modifier.height(16.dp))
@@ -123,31 +129,43 @@ fun PruebTecIntecapDialog(
                     }
                 }
                 Spacer(Modifier.height(16.dp))
-                PruebTecIntecapButton(
-                    text = textConfirmButtom, modifier = Modifier.fillMaxWidth(), onclick = {
-                        val idUser =
-                            if (userToEdit?.id != null) userToEdit.id else System.currentTimeMillis()
-                                .toString()
-                        val user = User(
-                            idUser,
-                            name,
-                            lastName,
-                            userName,
-                            email,
-                            "1234",
-                            userRole,
-                            phoneNumber,
-                            1
-                        )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    PruebTecIntecapButtonSeconday(
+                        modifier = Modifier.weight(1f),
+                        text = "Cancelar",
+                        textColor = Color.Red,
+                        border = BorderStroke(1.dp, Color.Red),
+                        onClick = { onDismiss() })
+                    Spacer(Modifier.width(10.dp))
+                    PruebTecIntecapButton(
+                        text = textConfirmButtom, modifier = Modifier.weight(1f), onclick = {
+                            val idUser =
+                                if (userToEdit?.id != null) userToEdit.id else System.currentTimeMillis()
+                                    .toString()
+                            val user = User(
+                                idUser,
+                                name,
+                                lastName,
+                                userName,
+                                email,
+                                "1234",
+                                userRole,
+                                phoneNumber,
+                                1
+                            )
 
-                        onUserAdded(user)
-                        name = ""
-                        lastName = ""
-                        userName = ""
-                        email = ""
-                        phoneNumber = ""
-                        userRole = UserRole.ADMIN
-                    })
+                            onUserAdded(user)
+                            name = ""
+                            lastName = ""
+                            userName = ""
+                            email = ""
+                            phoneNumber = ""
+                            userRole = UserRole.ADMIN
+                        })
+                }
             }
         }
     }
