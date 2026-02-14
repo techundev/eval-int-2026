@@ -25,7 +25,8 @@ Este repositorio está organizado de la siguiente manera para facilitar su revis
 
 ### 4. Serie IV: Desarrollo de Aplicación Android
 * **Carpeta:** `/AndroidApp`
-* **Tecnologías:** * **Lenguaje:** Kotlin
+* **Tecnologías:** 
+    * **Lenguaje:** Kotlin
     * **UI:** Jetpack Compose (Material 3)
     * **Arquitectura:** MVVM (Model-View-ViewModel)
     * **Inyección de Dependencias:** Dagger Hilt
@@ -40,7 +41,7 @@ Aquí se muestra el funcionamiento de la aplicación desarrollada en la Serie IV
 
 | Pantalla de Login | Dashboard / Lista de Usuarios |
 |:---:|:---:|
-| <img src="docs/login.png" width="300" /> | <img src="docs/listado.png" width="300" /> |
+| <img src="PruebaTecnicaIntecap2026/screenshots/LoginScreen.png" width="300" /> | <img src="PruebaTecnicaIntecap2026/screenshots/DashboardScreen.png" width="300" /> |
 | *Acceso seguro al sistema* | *Visualización dinámica de registros* |
 
 | Creación / Edición | Confirmación de Borrado |
