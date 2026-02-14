@@ -1,4 +1,4 @@
--- 1. Tablas Maestras (Independientes)
+-- Tablas Independientes
 -- -----------------------------------------------------
 
 CREATE TABLE marcas (
@@ -22,7 +22,7 @@ CREATE TABLE roles (
     descripcion TEXT
 );
 
--- 2. Tablas con Dependencias (Nivel 1)
+-- Tablas con Dependencias
 -- -----------------------------------------------------
 
 CREATE TABLE empleados (
@@ -35,7 +35,7 @@ CREATE TABLE empleados (
     FOREIGN KEY (puesto_id) REFERENCES puestos(puesto_id)
 );
 
--- 3. Tablas con Dependencias (Nivel 2)
+-- Tablas con Dependencias
 -- -----------------------------------------------------
 
 CREATE TABLE usuarios (
@@ -45,7 +45,7 @@ CREATE TABLE usuarios (
     password VARCHAR(255) NOT NULL,
     estado TINYINT(1) DEFAULT 1,
     rol_id INT,
-    empleado_id INT, -- Relación que aparece en el diagrama
+    empleado_id INT,
     FOREIGN KEY (rol_id) REFERENCES roles(rol_id),
     FOREIGN KEY (empleado_id) REFERENCES empleados(empleado_id)
 );
@@ -57,8 +57,8 @@ CREATE TABLE equipos (
     descripcion TEXT,
     fecha_compra DATE,
     precio DECIMAL(10, 2),
-    tipo_equipo INT, -- FK a tipo_equipo
-    empleado_id INT, -- FK a empleados
+    tipo_equipo INT,
+    empleado_id INT,
     FOREIGN KEY (marca_id) REFERENCES marcas(marca_id),
     FOREIGN KEY (tipo_equipo) REFERENCES tipo_equipo(tipo_id),
     FOREIGN KEY (empleado_id) REFERENCES empleados(empleado_id)
