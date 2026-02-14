@@ -14,13 +14,14 @@ Este repositorio está organizado de la siguiente manera para facilitar su revis
 
 ### 2. Serie II: SQL – DML (Manipulación de Datos)
 * **Archivo:** `QueriesSQL.sql`
-* **Contenido:** * Carga de roles y puestos.
+* **Contenido:** 
+    * Carga de roles y puestos.
     * Gestión de empleados y usuarios.
     * Creación de **Vistas** de base de datos.
     * Lógica de actualización y eliminación de registros.
 
 ### 3. Serie III: Diseño de Base de Datos
-* **Archivo:** `Modelo_Relacional_Normalizado.png`
+* **Archivo:** `DISEÑO DE BASE DE DATOS.png`
 * **Descripción:** Diagrama Entidad-Relación normalizado que resuelve la problemática planteada, asegurando la integridad de los datos.
 <p align="center">
   <img src="DISE%C3%91O%20DE%20BASE%20DE%20DATOS.png" alt="Modelo Relacional Normalizado" width="800" />
