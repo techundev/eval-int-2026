@@ -44,6 +44,8 @@ fun DashboardScreen(dashboardViewModel: DashboardViewModel = hiltViewModel()) {
                         .background(color = MaterialTheme.colorScheme.background)
                 ) {
                     PruebTecIntecapDialog(
+                        title = "Add New User",
+                        textConfirmButtom =  "Create user",
                         show = showDialog,
                         onUserAdded = { auth -> dashboardViewModel.onCreateUser(auth) },
                         onDismiss = { dashboardViewModel.onDialogClose() })

@@ -54,9 +54,10 @@ class DashboardViewModel @Inject constructor(
 
 
     fun onItemEdited(userInfo: User) = viewModelScope.launch {
-
-        updateUser(userInfo.id, userInfo.copy()).onSuccess {
+        updateUser(userInfo.id, userInfo).onSuccess {
             refresh()
+        }.onFailure {
+            Log.e("ERROR", "onItemEdited: $it")
         }
     }
 
@@ -64,7 +65,7 @@ class DashboardViewModel @Inject constructor(
         updateUser(userInfo.id, userInfo.copy(status = 0)).onSuccess {
             refresh()
         }.onFailure {
-            Log.e("ERROR", "onItemRemove: $it" )
+            Log.e("ERROR", "onItemRemove: $it")
         }
     }
 

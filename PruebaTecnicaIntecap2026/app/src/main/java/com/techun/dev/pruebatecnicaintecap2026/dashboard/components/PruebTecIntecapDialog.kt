@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,15 +29,33 @@ import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapT
 
 @Composable
 fun PruebTecIntecapDialog(
-    show: Boolean, onDismiss: () -> Unit, onUserAdded: (User) -> Unit
+    title: String,
+    textConfirmButtom: String,
+    userToEdit: User? = null,
+    show: Boolean,
+    onDismiss: () -> Unit,
+    onUserAdded: (User) -> Unit
 ) {
-    var name by remember { mutableStateOf("Armando") }
-    var userName by remember { mutableStateOf("smartemboser") }
-    var lastName by remember { mutableStateOf("Santos") }
-    var email by remember { mutableStateOf("smartemboser@gmail.com") }
-    var phoneNumber by remember { mutableStateOf("5555-5555") }
+    var name by remember { mutableStateOf("") }
+    var userName by remember { mutableStateOf("") }
+    var lastName by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var phoneNumber by remember { mutableStateOf("") }
     var userRole by remember { mutableStateOf(UserRole.ADMIN) }
-    var selectedName by remember { mutableStateOf("") }
+    var selectedName by remember { mutableStateOf("Admin") } // Para los RadioButtons
+
+
+    LaunchedEffect(userToEdit, show) {
+        if (show) {
+            name = userToEdit?.name ?: ""
+            userName = userToEdit?.username ?: ""
+            lastName = userToEdit?.lastName ?: ""
+            email = userToEdit?.email ?: ""
+            phoneNumber = userToEdit?.phoneNumber ?: ""
+            userRole = userToEdit?.role ?: UserRole.ADMIN
+            selectedName = if (userRole == UserRole.ADMIN) "Admin" else "Employee"
+        }
+    }
 
     if (show) {
         Dialog(onDismissRequest = onDismiss) {
@@ -50,7 +69,7 @@ fun PruebTecIntecapDialog(
                     .padding(16.dp)
             ) {
                 PruebTecIntecapText(
-                    text = "Add New User",
+                    text = title,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
@@ -105,8 +124,10 @@ fun PruebTecIntecapDialog(
                 }
                 Spacer(Modifier.height(16.dp))
                 PruebTecIntecapButton(
-                    text = "Create user", modifier = Modifier.fillMaxWidth(), onclick = {
-                        val idUser = System.currentTimeMillis().toString()
+                    text = textConfirmButtom, modifier = Modifier.fillMaxWidth(), onclick = {
+                        val idUser =
+                            if (userToEdit?.id != null) userToEdit.id else System.currentTimeMillis()
+                                .toString()
                         val user = User(
                             idUser,
                             name,
@@ -118,6 +139,7 @@ fun PruebTecIntecapDialog(
                             phoneNumber,
                             1
                         )
+
                         onUserAdded(user)
                         name = ""
                         lastName = ""

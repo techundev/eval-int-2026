@@ -12,7 +12,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.BlendMode
@@ -27,11 +29,11 @@ import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapT
 
 @Composable
 fun PruebTecIntecapList(
-    users: List<User>,
-    onEditSelected: (User) -> Unit,
-    onDeleteSelected: (User) -> Unit
+    users: List<User>, onEditSelected: (User) -> Unit, onDeleteSelected: (User) -> Unit
 ) {
     val listState = rememberLazyListState()
+    var isDialogDisplay by remember { mutableStateOf(false) }
+    var selectedUser by remember { mutableStateOf<User?>(null) }
 
     val showTopFade by remember {
         derivedStateOf {
@@ -58,6 +60,20 @@ fun PruebTecIntecapList(
         )
     }
 
+    PruebTecIntecapDialog(
+        title = "Edit user",
+        textConfirmButtom = "Save",
+        userToEdit = selectedUser,
+        show = isDialogDisplay,
+        onUserAdded = { auth ->
+            onEditSelected(auth)
+            isDialogDisplay = !isDialogDisplay
+        },
+        onDismiss = {
+            isDialogDisplay = !isDialogDisplay
+            selectedUser = null
+        })
+
     LazyColumn(
         state = listState,
         modifier = Modifier.fadingEdge(fadeGradient),
@@ -69,7 +85,8 @@ fun PruebTecIntecapList(
 
         items(users, key = { it.id }) { currentUser ->
             PruebTecIntecapItem(currentUser, onEditSelected = { user ->
-                onEditSelected(user)
+                selectedUser = user
+                isDialogDisplay = true
             }, onDeleteSelected = { user ->
                 onDeleteSelected(user)
             })
