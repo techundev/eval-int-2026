@@ -15,15 +15,17 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.techun.dev.pruebatecnicaintecap2026.R
-import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapButton
-import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapTextField
-import com.techun.dev.pruebatecnicaintecap2026.login.domain.model.UserRole
+import com.techun.dev.pruebatecnicaintecap2026.core.components.PruebTecIntecapButton
+import com.techun.dev.pruebatecnicaintecap2026.core.components.PruebTecIntecapText
+import com.techun.dev.pruebatecnicaintecap2026.core.components.PruebTecIntecapTextField
+import com.techun.dev.pruebatecnicaintecap2026.core.domain.UserRole
 
 @Composable
 fun LoginScreen(
@@ -78,6 +80,11 @@ fun LoginScreen(
                     loginViewModel.doLogin()
                 })
             Spacer(modifier = Modifier.weight(1f))
+            PruebTecIntecapText(
+                text = "Technical Assessment Build",
+                style = MaterialTheme.typography.labelSmall,
+                color = Color.Gray
+            )
         }
     }
 }

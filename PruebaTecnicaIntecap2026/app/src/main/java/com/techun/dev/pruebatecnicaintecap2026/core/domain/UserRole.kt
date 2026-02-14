@@ -1,4 +1,4 @@
-package com.techun.dev.pruebatecnicaintecap2026.login.domain.model
+package com.techun.dev.pruebatecnicaintecap2026.core.domain
 
 enum class UserRole(val value: Int) {
     ADMIN(0),

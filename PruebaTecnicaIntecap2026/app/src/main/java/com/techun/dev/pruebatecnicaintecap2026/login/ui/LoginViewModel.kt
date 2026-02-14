@@ -2,7 +2,7 @@ package com.techun.dev.pruebatecnicaintecap2026.login.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.techun.dev.pruebatecnicaintecap2026.login.domain.model.UserRole
+import com.techun.dev.pruebatecnicaintecap2026.core.domain.UserRole
 import com.techun.dev.pruebatecnicaintecap2026.login.domain.usecase.DoLogin
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
@@ -43,7 +43,7 @@ class LoginViewModel @Inject constructor(private val doLogin: DoLogin) : ViewMod
                 val userFound = doLogin(currentUser, currentPassword)
 
                 if (userFound != null) {
-                    val userRol = userFound.rol
+                    val userRol = userFound.role
                     _uiState.update {
                         it.copy(
                             isLoading = false, isSuccess = true, role = userRol
@@ -73,8 +73,8 @@ class LoginViewModel @Inject constructor(private val doLogin: DoLogin) : ViewMod
 
 data class LoginUiState(
     val isSuccess: Boolean = false,
-    val user: String = "jdoe",
-    val password: String = "password1",
+    val user: String = "",
+    val password: String = "",
     val isLoading: Boolean = false,
     val error: String? = null,
     val role: UserRole = UserRole.UNKNOWN
