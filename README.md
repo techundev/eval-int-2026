@@ -66,7 +66,21 @@ Aquí se muestra el funcionamiento de la aplicación desarrollada en la Serie IV
 2.  **Android:** * Android Studio Jellyfish | 2023.3.1 o superior.
     * JDK 17.
     * Conexión a Internet (para sincronización con Firebase).
+> [!IMPORTANT]
+> **Nota sobre seguridad:** Por motivos de la prueba técnica, la aplicación asigna la contraseña por defecto **"1234"** a los nuevos registros.
+---
 
+## 🔑 Credenciales de Prueba
+
+Para facilitar la revisión de las funcionalidades de la aplicación (roles y permisos), se pueden utilizar las siguientes cuentas:
+
+| Rol | Nombre | Correo | Contraseña |
+| :--- | :--- | :--- | :--- |
+| **Administrador** | Carlos Méndez | `carlos.m@empresa.com` | `admin123` |
+| **Administrador** | Elenah Rodríguez | `elena.r@empresa.com` | `1234` |
+| **Empleado** | Juan Pérez | `juan.p@empresa.com` | `1234` |
+| **Empleado** | María López | `maria.l@empresa.com` | `pass456` |
+| **Empleado** | Roberto Gómez | `roberto.g@empresa.com` | `key1122` |
 ---
 
 ## 👤 Autor
