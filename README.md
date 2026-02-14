@@ -48,6 +48,11 @@ Aquí se muestra el funcionamiento de la aplicación desarrollada en la Serie IV
 | <img src="docs/dialogo.png" width="300" /> | <img src="docs/confirmacion.png" width="300" /> |
 | *Formulario de gestión de usuarios* | *Control de acciones destructivas* |
 
+| Creación / Edición | Confirmación de Borrado |
+|:---:|:---:|
+| <img src="docs/dialogo.png" width="300" /> | <img src="docs/confirmacion.png" width="300" /> |
+| *Formulario de gestión de usuarios* | *Control de acciones destructivas* |
+
 ---
 
 ## 🛠️ Requisitos para Ejecución
