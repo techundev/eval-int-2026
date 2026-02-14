@@ -22,10 +22,12 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.techun.dev.pruebatecnicaintecap2026.R
+import com.techun.dev.pruebatecnicaintecap2026.core.components.PruebTecIntecapText
 import com.techun.dev.pruebatecnicaintecap2026.core.domain.User
-import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapText
 
 @Composable
 fun PruebTecIntecapList(
@@ -62,8 +64,8 @@ fun PruebTecIntecapList(
     }
 
     PruebTecIntecapDialog(
-        title = "Edit user",
-        textConfirmButtom = "Save",
+        title = stringResource(R.string.edit_user_dialog_title),
+        textConfirmButtom = stringResource(R.string.button_confirm_save_text),
         userToEdit = selectedUser,
         show = isDialogDisplay,
         onUserAdded = { user ->
@@ -78,7 +80,7 @@ fun PruebTecIntecapList(
     PruebTecIntecapConfirmDialog(
         show = isConfirmDialogDisplay,
         userToEdit = selectedUser,
-        onConfirm = {user ->
+        onConfirm = { user ->
             onDeleteSelected(user)
             isConfirmDialogDisplay = !isConfirmDialogDisplay
         },
@@ -114,10 +116,9 @@ fun PruebTecIntecapCardHeaderSection() {
     Column {
         Spacer(modifier = Modifier.height(24.dp))
         PruebTecIntecapText(
-            modifier = Modifier.padding(horizontal = 30.dp),
-            text = "Usuarios",
-            style = MaterialTheme.typography.bodyLarge,
-            fontSize = 30.sp,
+            modifier = Modifier.padding(horizontal = 16.dp),
+            text = stringResource(R.string.dashboard_screen_header_title),
+            style = MaterialTheme.typography.displayLarge,
         )
         Spacer(modifier = Modifier.height(12.dp))
     }

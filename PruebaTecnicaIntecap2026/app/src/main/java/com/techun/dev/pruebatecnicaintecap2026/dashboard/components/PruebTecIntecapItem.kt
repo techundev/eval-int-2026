@@ -30,9 +30,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import coil3.compose.AsyncImage
 import com.techun.dev.pruebatecnicaintecap2026.R
 import com.techun.dev.pruebatecnicaintecap2026.core.domain.User
-import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapText
+import com.techun.dev.pruebatecnicaintecap2026.core.components.PruebTecIntecapText
 
 
 @Composable
@@ -42,7 +43,7 @@ fun PruebTecIntecapItem(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(horizontal = 16.dp, vertical = 6.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
         shape = MaterialTheme.shapes.large
@@ -53,12 +54,13 @@ fun PruebTecIntecapItem(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(80.dp)
+                    .height(60.dp)
                     .background(MaterialTheme.colorScheme.primary)
                     .constrainAs(header) {
                         top.linkTo(parent.top)
                     }
-                    .padding(16.dp)) {
+                    .padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically) {
                 PruebTecIntecapText(
                     text = user.role.name, color = Color.White, fontWeight = FontWeight.Bold
                 )
@@ -83,8 +85,8 @@ fun PruebTecIntecapItem(
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
                     }) {
-                Image(
-                    painter = painterResource(R.drawable.ic_launcher_foreground),
+                AsyncImage(
+                    model = "https://images.vexels.com/media/users/3/137047/isolated/preview/5831a17a290077c646a48c4db78a81bb-user-profile-blue-icon.png",
                     contentDescription = null,
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Crop

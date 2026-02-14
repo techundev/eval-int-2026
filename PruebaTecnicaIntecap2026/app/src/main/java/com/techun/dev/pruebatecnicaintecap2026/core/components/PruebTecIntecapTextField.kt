@@ -1,4 +1,4 @@
-package com.techun.dev.pruebatecnicaintecap2026.login.components
+package com.techun.dev.pruebatecnicaintecap2026.core.components
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.animateFloatAsState

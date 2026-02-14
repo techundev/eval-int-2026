@@ -6,7 +6,7 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapText
+import com.techun.dev.pruebatecnicaintecap2026.core.components.PruebTecIntecapText
 
 @Composable
 fun PruebTecIntecapRadioButton(

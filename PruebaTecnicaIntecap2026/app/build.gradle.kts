@@ -70,6 +70,10 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.adapter)
 
+    //Coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+
     //Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

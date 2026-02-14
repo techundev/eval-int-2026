@@ -6,9 +6,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import com.techun.dev.pruebatecnicaintecap2026.R
 import com.techun.dev.pruebatecnicaintecap2026.core.domain.User
-import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapButton
-import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapText
+import com.techun.dev.pruebatecnicaintecap2026.core.components.PruebTecIntecapButton
+import com.techun.dev.pruebatecnicaintecap2026.core.components.PruebTecIntecapText
 
 
 @Composable
@@ -19,11 +21,12 @@ fun PruebTecIntecapConfirmDialog(
         AlertDialog(
             shape = MaterialTheme.shapes.medium,
             onDismissRequest = { onDismiss() },
-            title = { PruebTecIntecapText(text = "Confirmar eliminación") },
-            text = { PruebTecIntecapText(text = "¿Estás seguro de eliminar este registro?") },
+            title = { PruebTecIntecapText(text = stringResource(R.string.dialog_confirm_title)) },
+            text = { PruebTecIntecapText(text = stringResource(R.string.dialog_confirm_description)) },
             confirmButton = {
                 PruebTecIntecapButton(
-                    text = "Acaptar", onclick = { onConfirm(userToEdit!!) })
+                    text = stringResource(R.string.button_confirm_text),
+                    onclick = { onConfirm(userToEdit!!) })
             },
             dismissButton = {
                 TextButton(
@@ -32,7 +35,8 @@ fun PruebTecIntecapConfirmDialog(
                     )
                 ) {
                     PruebTecIntecapText(
-                        text = "Cancelar", color = MaterialTheme.colorScheme.onPrimary
+                        text = stringResource(R.string.button_cancel_text),
+                        color = MaterialTheme.colorScheme.onPrimary
                     )
                 }
             },

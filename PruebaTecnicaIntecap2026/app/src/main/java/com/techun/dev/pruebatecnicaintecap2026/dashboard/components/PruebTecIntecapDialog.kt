@@ -20,16 +20,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.techun.dev.pruebatecnicaintecap2026.R
+import com.techun.dev.pruebatecnicaintecap2026.core.components.PruebTecIntecapButton
 import com.techun.dev.pruebatecnicaintecap2026.core.components.PruebTecIntecapButtonSeconday
+import com.techun.dev.pruebatecnicaintecap2026.core.components.PruebTecIntecapText
+import com.techun.dev.pruebatecnicaintecap2026.core.components.PruebTecIntecapTextField
 import com.techun.dev.pruebatecnicaintecap2026.core.domain.User
 import com.techun.dev.pruebatecnicaintecap2026.core.domain.UserRole
-import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapButton
-import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapText
-import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapTextField
 
 
 @Composable
@@ -135,7 +137,7 @@ fun PruebTecIntecapDialog(
                 ) {
                     PruebTecIntecapButtonSeconday(
                         modifier = Modifier.weight(1f),
-                        text = "Cancelar",
+                        text = stringResource(R.string.button_cancel_text),
                         textColor = Color.Red,
                         border = BorderStroke(1.dp, Color.Red),
                         onClick = { onDismiss() })

@@ -16,7 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.techun.dev.pruebatecnicaintecap2026.R
 import com.techun.dev.pruebatecnicaintecap2026.core.components.PruebTecIntecapButtonSeconday
-import com.techun.dev.pruebatecnicaintecap2026.login.components.PruebTecIntecapText
+import com.techun.dev.pruebatecnicaintecap2026.core.components.PruebTecIntecapText
 
 @Composable
 fun EmployeeScreen(navigateBack: () -> Unit) {

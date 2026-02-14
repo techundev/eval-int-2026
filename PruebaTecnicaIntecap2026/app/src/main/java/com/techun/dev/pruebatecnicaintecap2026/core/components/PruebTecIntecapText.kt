@@ -1,4 +1,4 @@
-package com.techun.dev.pruebatecnicaintecap2026.login.components
+package com.techun.dev.pruebatecnicaintecap2026.core.components
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text

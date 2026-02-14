@@ -11,8 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.techun.dev.pruebatecnicaintecap2026.R
 import com.techun.dev.pruebatecnicaintecap2026.dashboard.components.PruebTecIntecapDialog
 import com.techun.dev.pruebatecnicaintecap2026.dashboard.components.PruebTecIntecapFab
 import com.techun.dev.pruebatecnicaintecap2026.dashboard.components.PruebTecIntecapList
@@ -44,8 +46,8 @@ fun DashboardScreen(dashboardViewModel: DashboardViewModel = hiltViewModel()) {
                         .background(color = MaterialTheme.colorScheme.background)
                 ) {
                     PruebTecIntecapDialog(
-                        title = "Add New User",
-                        textConfirmButtom =  "Create user",
+                        title = stringResource(R.string.create_user_dialog_title),
+                        textConfirmButtom = stringResource(R.string.create_user_button_text),
                         show = showDialog,
                         onUserAdded = { auth -> dashboardViewModel.onCreateUser(auth) },
                         onDismiss = { dashboardViewModel.onDialogClose() })
